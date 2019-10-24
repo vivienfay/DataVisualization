@@ -90,7 +90,8 @@
         .attr('cx', xMap)
         .attr('cy', yMap)
         .attr('r', (d) => pop_map_func(d["pop_mlns"]))
-        .attr('fill', "#4286f4")
+        .attr('stroke', "#4286f4")
+        .style('fill-opacity','0')
         // add tooltip functionality to points
         .on("mouseover", (d) => {
           div.transition()
