@@ -265,25 +265,26 @@
 
     dropDown.on("change", function() {
       var selected = this.value;
-      var opt2 = d3.select("#filter2").node().value; 
+      opt1 = d3.select(this).property("value");
       let displayOthers = this.checked ? "inline" : "none";
       let display = this.checked ? "none" : "inline";
       
       
     svgContainer.selectAll('circle').filter(function(d) {
-      if(selected == 'select'){return d.Generation != d.Generation}                 
+      if(selected == 'select'){return d.Generation != d.Generation}                    
       return (selected != d.Generation);})
         .attr("display", displayOthers);
         
     svgContainer.selectAll('circle').filter(function(d) {
-      if (selected == 'select'){return d.Generation == d.Generation} 
+      if (selected == 'select' && opt2 == 'select'){return d.Generation == d.Generation} 
+      if (selected == 'select' && opt2 != 'select'){return opt2 == d.Legendary} 
       return (selected == d.Generation && opt2 == d.Legendary);})
         .attr("display", display);
       });
 
     dropDown2.on("change", function() {
       var selected = this.value; 
-      var opt1 = d3.select("#filter").node().value; 
+      opt2 = d3.select(this).property("value");
       let displayOthers = this.checked ? "inline" : "none";
       let display = this.checked ? "none" : "inline";
       
@@ -296,7 +297,8 @@
         
     svgContainer.selectAll('circle')
           .filter(function(d) {
-            if (selected == 'select'){return d.Legendary == d.Legendary} 
+            if (selected == 'select' && opt1 == 'select'){return d.Legendary == d.Legendary} 
+            if (selected == 'select' && opt1 != 'select'){return opt1 == d.Generation} 
             return (selected == d.Legendary && opt1 == d.Generation);})
           .attr("display", display)
       });
