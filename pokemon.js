@@ -278,6 +278,7 @@
     svgContainer.selectAll('circle').filter(function(d) {
       if (selected == 'select' && opt2 == 'select'){return d.Generation == d.Generation} 
       if (selected == 'select' && opt2 != 'select'){return opt2 == d.Legendary} 
+      if (selected != 'select' && opt2 == 'select'){return selected == d.Generation} 
       return (selected == d.Generation && opt2 == d.Legendary);})
         .attr("display", display);
       });
@@ -299,6 +300,7 @@
           .filter(function(d) {
             if (selected == 'select' && opt1 == 'select'){return d.Legendary == d.Legendary} 
             if (selected == 'select' && opt1 != 'select'){return opt1 == d.Generation} 
+            if (selected != 'select' && opt1 == 'select'){return selected == d.Legendary} 
             return (selected == d.Legendary && opt1 == d.Generation);})
           .attr("display", display)
       });
